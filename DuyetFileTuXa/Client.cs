@@ -93,6 +93,7 @@ namespace DuyetFileTuXa
         string datas;
         string name;
         bool check = true;
+        string linktemp;
         void Receive()
         {
             while (true)
@@ -163,6 +164,7 @@ namespace DuyetFileTuXa
                             FolderBrowserDialog ofd = new FolderBrowserDialog();      // chọn đường dẫn để lưu file
                             ofd.ShowDialog();
                             FileStream fs = new FileStream(ofd.SelectedPath + "/" + s[0], FileMode.Create);
+                            linktemp = ofd.SelectedPath + "/" + s[0];
                             fs.Write(fsize, 0, fsize.Length);
                             fs.Close();
                             dropBox.Items.Clear();
@@ -230,6 +232,12 @@ namespace DuyetFileTuXa
         {
             Send();
             AddMessage((txtName.Text + ": " + txtMess.Text).ToString());
+        }
+
+        private void openandeditfile_Click(object sender, EventArgs e)
+        {
+            XuliFile xuliFile = new XuliFile(linktemp);
+            xuliFile.Show();
         }
     }
 }

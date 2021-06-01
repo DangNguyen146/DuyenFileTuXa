@@ -121,8 +121,8 @@
   <data name="open file" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\open file.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SendMess" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SendMess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Server" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Server.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,13 +136,19 @@
   <data name="Client" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Client.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="5264881" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5264881.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Receive" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Receive.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SendMess" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SendMess.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TitleLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TitleLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="openandeditfile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\openandeditfile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

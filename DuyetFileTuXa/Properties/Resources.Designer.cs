@@ -63,6 +63,16 @@ namespace DuyetFileTuXa.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5264881 {
+            get {
+                object obj = ResourceManager.GetObject("5264881", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Client {
             get {
                 object obj = ResourceManager.GetObject("Client", resourceCulture);
@@ -96,6 +106,16 @@ namespace DuyetFileTuXa.Properties {
         internal static System.Drawing.Bitmap open_file {
             get {
                 object obj = ResourceManager.GetObject("open file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap openandeditfile {
+            get {
+                object obj = ResourceManager.GetObject("openandeditfile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

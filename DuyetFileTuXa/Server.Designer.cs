@@ -32,10 +32,12 @@
             this.dropBox = new System.Windows.Forms.ListBox();
             this.txtMess = new System.Windows.Forms.TextBox();
             this.lbLoading = new System.Windows.Forms.Label();
+            this.openandeditfile = new System.Windows.Forms.PictureBox();
             this.btnSendMess = new System.Windows.Forms.PictureBox();
             this.btnOpenFile = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.openandeditfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSendMess)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -78,6 +80,18 @@
             this.lbLoading.Name = "lbLoading";
             this.lbLoading.Size = new System.Drawing.Size(0, 20);
             this.lbLoading.TabIndex = 6;
+            // 
+            // openandeditfile
+            // 
+            this.openandeditfile.BackgroundImage = global::DuyetFileTuXa.Properties.Resources.openandeditfile;
+            this.openandeditfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.openandeditfile.Location = new System.Drawing.Point(511, 344);
+            this.openandeditfile.Name = "openandeditfile";
+            this.openandeditfile.Size = new System.Drawing.Size(211, 64);
+            this.openandeditfile.TabIndex = 9;
+            this.openandeditfile.TabStop = false;
+            this.openandeditfile.Visible = false;
+            this.openandeditfile.Click += new System.EventHandler(this.pictureBox3_Click_2);
             // 
             // btnSendMess
             // 
@@ -129,6 +143,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(243)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.openandeditfile);
             this.Controls.Add(this.btnSendMess);
             this.Controls.Add(this.lbLoading);
             this.Controls.Add(this.btnOpenFile);
@@ -142,6 +157,7 @@
             this.Name = "Server";
             this.Text = "Server";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Server_FormClosed);
+            ((System.ComponentModel.ISupportInitialize)(this.openandeditfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSendMess)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -161,5 +177,6 @@
         private System.Windows.Forms.PictureBox btnOpenFile;
         private System.Windows.Forms.Label lbLoading;
         private System.Windows.Forms.PictureBox btnSendMess;
+        private System.Windows.Forms.PictureBox openandeditfile;
     }
 }

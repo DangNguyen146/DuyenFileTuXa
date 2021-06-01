@@ -37,9 +37,11 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.openandeditfile = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openandeditfile)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -126,6 +128,18 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
+            // openandeditfile
+            // 
+            this.openandeditfile.BackgroundImage = global::DuyetFileTuXa.Properties.Resources.openandeditfile;
+            this.openandeditfile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.openandeditfile.Location = new System.Drawing.Point(511, 372);
+            this.openandeditfile.Name = "openandeditfile";
+            this.openandeditfile.Size = new System.Drawing.Size(211, 64);
+            this.openandeditfile.TabIndex = 16;
+            this.openandeditfile.TabStop = false;
+            this.openandeditfile.Visible = false;
+            this.openandeditfile.Click += new System.EventHandler(this.openandeditfile_Click);
+            // 
             // Client
             // 
             this.AllowDrop = true;
@@ -133,6 +147,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(243)))), ((int)(((byte)(237)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.openandeditfile);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.pictureBox2);
@@ -150,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.openandeditfile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,5 +182,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox openandeditfile;
     }
 }

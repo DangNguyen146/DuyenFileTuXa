@@ -95,6 +95,7 @@ namespace DuyetFileTuXa
         string datas;
         string name;
         bool check = true;
+        string linktemp;
         void Receive(object obj)
         {
             Socket client = obj as Socket;
@@ -160,12 +161,14 @@ namespace DuyetFileTuXa
                         this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
                         {
                             FolderBrowserDialog ofd = new FolderBrowserDialog();      // chọn đường dẫn để lưu file
-                        ofd.ShowDialog();
+                            ofd.ShowDialog();
                             FileStream fs = new FileStream(ofd.SelectedPath + "/" + s[0], FileMode.Create);
+                            linktemp = ofd.SelectedPath + "/" + s[0];
                             fs.Write(fsize, 0, fsize.Length);
                             fs.Close();
                             dropBox.Items.Clear();
                             dropBox.Enabled = true;
+                            openandeditfile.Visible = true;
                         });
                     }
                 }
@@ -337,10 +340,7 @@ namespace DuyetFileTuXa
             fs.Close();
         }
 
-        private void pictureBox3_Click_1(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void btnSendMess_Click(object sender, EventArgs e)
         {
@@ -353,6 +353,12 @@ namespace DuyetFileTuXa
             {
                 txtMess.Text = "";
             });
+        }
+
+        private void pictureBox3_Click_2(object sender, EventArgs e)
+        {
+            XuliFile xuliFile = new XuliFile(linktemp);
+            xuliFile.Show();
         }
     }
 }

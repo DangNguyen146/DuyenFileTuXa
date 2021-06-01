@@ -66,6 +66,12 @@
     <Compile Include="Server.Designer.cs">
       <DependentUpon>Server.cs</DependentUpon>
     </Compile>
+    <Compile Include="XuliFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XuliFile.Designer.cs">
+      <DependentUpon>XuliFile.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +90,9 @@
     </Compile>
     <EmbeddedResource Include="Server.resx">
       <DependentUpon>Server.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XuliFile.resx">
+      <DependentUpon>XuliFile.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\SendMess.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5264881.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openandeditfile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

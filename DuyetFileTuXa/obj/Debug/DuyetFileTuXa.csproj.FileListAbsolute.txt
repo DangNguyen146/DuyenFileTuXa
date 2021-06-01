@@ -10,3 +10,4 @@ F:\LamThem\TrieuMen\DuyetFileTuXa\DuyetFileTuXa\obj\Debug\DuyetFileTuXa.exe
 F:\LamThem\TrieuMen\DuyetFileTuXa\DuyetFileTuXa\obj\Debug\DuyetFileTuXa.pdb
 F:\LamThem\TrieuMen\DuyetFileTuXa\DuyetFileTuXa\obj\Debug\DuyetFileTuXa.Client.resources
 F:\LamThem\TrieuMen\DuyetFileTuXa\DuyetFileTuXa\obj\Debug\DuyetFileTuXa.Server.resources
+F:\LamThem\TrieuMen\DuyetFileTuXa\DuyetFileTuXa\obj\Debug\DuyetFileTuXa.XuliFile.resources
