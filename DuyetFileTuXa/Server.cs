@@ -50,7 +50,7 @@ namespace DuyetFileTuXa
             
             dropBox.Enabled = false;
             btnOpenFile.Enabled = false;
-            this.AllowDrop = false;
+            
         }
         IPEndPoint IP;
         Socket server;
@@ -94,6 +94,7 @@ namespace DuyetFileTuXa
         }
         string datas;
         string name;
+        bool check = true;
         void Receive(object obj)
         {
             Socket client = obj as Socket;
@@ -101,68 +102,179 @@ namespace DuyetFileTuXa
             {
                 try
                 {
-                    byte[] data = new byte[1024 * 5000];
-                    client.Receive(data);
-
-                    string message = Deserialize(data).ToString();
-
-                    switch (message.Substring(0, 3))
+                    if (check == true)
                     {
-                        case "00:":
-                            {
-                                AddMessage(message.Substring(3));
-                                break;
-                            }
-                        case "01:":
-                            {
-                                name = message.Substring(3);
-                                AddMessage(name);
-                                break;
-                            }
-                        case "02:":
-                            {
-                                datas = message.Substring(3);
-
-                                this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
+                        byte[] data = new byte[1024 * 5000];
+                        client.Receive(data);
+                        string message = Deserialize(data).ToString();
+                        switch (message.Substring(0, 3))
+                        {
+                            case "00:":
                                 {
-                                    FolderBrowserDialog ofd = new FolderBrowserDialog();      // chọn đường dẫn để lưu file
-                                    ofd.ShowDialog();
-                                    FileStream fs = new FileStream(ofd.SelectedPath + @"\" + name, FileMode.Create);
-                                    StreamWriter rd = new StreamWriter(fs, Encoding.UTF8);
-                                    rd.WriteLine(datas.Trim().ToString());
-                                    rd.Flush();
-                                    rd.Close();
-                                });
+                                    AddMessage(message.Substring(3));
+                                    foreach (Socket item in clientList)
+                                    {
+                                        item.Send(Serialize(message.Substring(3)));
+                                    }
+                                    break;
+                                }
+                            case "03:":
+                                {
+                                    this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
+                                    {
+                                        dropBox.Items.Clear();
+                                        dropBox.Enabled = true;
+                                    });
+                                    break;
+                                }
+                            case "04:":
+                                {
+                                    check = false;
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
+                    }
+                    else
+                    {
+                        byte[] datas = new byte[1024 * 5000];
+                        int size = client.Receive(datas);
+                        string[] s = Encoding.ASCII.GetString(datas, 0, size).Split(new char[] { ',' });
+                        long length = long.Parse(s[1]);
+                        byte[] buffer = new byte[1024 * 5000];
+                        byte[] fsize = new byte[length];
+                        long n = length / buffer.Length;
+                        for (int i = 0; i < n || i == 0; i++)
+                        {
+                            size = client.Receive(fsize, fsize.Length, SocketFlags.None);
+                            AddMessage("Received frame {" + i + "}/{" + n + "}");
+                            if (i == n - 1 || i == n)
+                            {
+                                check = true;
                                 client.Send(Serialize("03:"));
-                                break;
                             }
-                        case "03:":
-                            {
-                                this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
-                                {
-                                    dropBox.Items.Clear();
-                                    dropBox.Enabled = true;
-                                });
-                                break;
-                            }
-                        default:
-                            {
-                                AddMessage(message);
-                                break;
-                            }
+                        }
+                        this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
+                        {
+                            FolderBrowserDialog ofd = new FolderBrowserDialog();      // chọn đường dẫn để lưu file
+                        ofd.ShowDialog();
+                            FileStream fs = new FileStream(ofd.SelectedPath + "/" + s[0], FileMode.Create);
+                            fs.Write(fsize, 0, fsize.Length);
+                            fs.Close();
+                            dropBox.Items.Clear();
+                            dropBox.Enabled = true;
+                        });
                     }
                 }
                 catch
                 {
                     clientList.Remove(client);
-                    client.Close();
+                    
                 }
             }
         }
+        //void Receive(object obj)
+        //{
+        //    Socket client = obj as Socket;
+        //    while (true)
+        //    {
+        //        try
+        //        {
+        //            byte[] datas = new byte[1024 * 5000];
+        //            int size = client.Receive(datas);
+        //            string[] s = Encoding.ASCII.GetString(datas, 0, size).Split(new char[] { ',' });
+        //            long length = long.Parse(s[1]);
+        //            byte[] buffer = new byte[1024 * 5000];
+        //            byte[] fsize = new byte[length];
+        //            long n = length / buffer.Length;
+        //            for (int i = 0; i < n || i == 0; i++)
+        //            {
+        //                size = client.Receive(fsize, fsize.Length, SocketFlags.None);
+        //                AddMessage("Received frame {" + i + "}/{" + n + "}");
+        //            }
+        //            this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
+        //            {
+        //                FolderBrowserDialog ofd = new FolderBrowserDialog();      // chọn đường dẫn để lưu file
+        //                ofd.ShowDialog();
+        //                FileStream fs = new FileStream(ofd.SelectedPath + "/" + s[0], FileMode.Create);
+        //                fs.Write(fsize, 0, fsize.Length);
+        //                fs.Close();
+        //                dropBox.Items.Clear();
+        //                dropBox.Enabled = true;
+        //            });
+        //            break;
+        //        }
+        //        catch
+        //        {
+
+        //        }
+        //        try
+        //        {
+        //            byte[] data = new byte[1024 * 5000];
+        //            client.Receive(data);
+        //            string message = Deserialize(data).ToString();
+        //            switch (message.Substring(0, 3))
+        //            {
+        //                case "00:":
+        //                    {
+        //                        AddMessage(message.Substring(3));
+        //                        break;
+        //                    }
+        //                case "01:":
+        //                    {
+        //                        name = message.Substring(3);
+        //                        AddMessage(name);
+        //                        break;
+        //                    }
+        //                case "02:":
+        //                    {
+        //                        datas = message.Substring(3);
+
+        //                        this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
+        //                        {
+        //                            FolderBrowserDialog ofd = new FolderBrowserDialog();      // chọn đường dẫn để lưu file
+        //                            ofd.ShowDialog();
+        //                            FileStream fs = new FileStream(ofd.SelectedPath + @"\" + name, FileMode.Create);
+        //                            StreamWriter rd = new StreamWriter(fs, Encoding.UTF8);
+        //                            rd.WriteLine(datas.Trim().ToString());
+        //                            rd.Flush();
+        //                            rd.Close();
+        //                        });
+        //                        client.Send(Serialize("03:"));
+        //                        break;
+        //                    }
+        //                case "03:":
+        //                    {
+        //                        this.BeginInvoke((MethodInvoker)delegate            //How do I update the GUI from another thread?
+        //                        {
+        //                            dropBox.Items.Clear();
+        //                            dropBox.Enabled = true;
+        //                        });
+        //                        break;
+        //                    }
+        //                default:
+        //                    {
+                                
+                                
+        //                        //MessageBox.Show("Access");
+        //                        break;
+        //                    }
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            clientList.Remove(client);
+        //            client.Close();
+        //        }
+        //    }
+        //}
         
         void AddMessage(string s)
         {
-            listMess.Text += s+"\n";
+            listMess.Text += (s+"\n").ToString();
         }
         byte[] Serialize(object obj)
         {
@@ -188,19 +300,28 @@ namespace DuyetFileTuXa
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            FileStream fs = new FileStream(fileInfo.ToString(), FileMode.OpenOrCreate);
-            StreamReader sr = new StreamReader(fs);
-            string name = fileInfo.Name.ToString();
-            string content = sr.ReadToEnd().ToString();
-            foreach(Socket client in clientList)
+            foreach (Socket client in clientList)
             {
-                if (client != null)
+                client.Send(Serialize("04:"));
+                Thread.Sleep(100);
+                byte[] data = new byte[1024 * 5000];
+                byte[] fsize = new byte[fileInfo.Length];
+                FileStream fs = new FileStream(fileInfo.FullName, FileMode.Open);
+                fs.Read(fsize, 0, fsize.Length);
+                fs.Close();
+                while (true)
                 {
-                    AddMessage(name);
-                    client.Send(Serialize("01:" + name));
-                    Thread.Sleep(100);
-                    AddMessage(content);
-                    client.Send(Serialize("02:"+ content));
+                    string s = fileInfo.Name + "," + fileInfo.Length.ToString();
+                    client.Send(Encoding.ASCII.GetBytes(s));
+                    long n = fileInfo.Length / data.Length;  //tính số frame phải gửiđi
+
+                    for (int i = 0; i < n || i == 0; i++)
+                    {
+                        client.Send(fsize, fsize.Length, 0);
+                        AddMessage("Send frame {" + i + "}/{" + fsize.Length + "}");
+                        Thread.Sleep(100);
+                    }
+                    break;
                 }
             }
         }
@@ -210,8 +331,9 @@ namespace DuyetFileTuXa
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
             FileStream fs = new FileStream(ofd.FileName, FileMode.OpenOrCreate);
-            StreamReader sr = new StreamReader(fs);
             dropBox.Visible = true;
+            dropBox.Items.Add(fs.Name);
+            fileInfo = new FileInfo(fs.Name);
             fs.Close();
         }
 
@@ -225,8 +347,12 @@ namespace DuyetFileTuXa
             AddMessage(txtMess.Text);
             foreach (Socket item in clientList)
             {
-                item.Send(Serialize("00:" + txtMess.Text));
+                item.Send(Serialize("00:Server:" + txtMess.Text));
             }
+            this.BeginInvoke((MethodInvoker)delegate         
+            {
+                txtMess.Text = "";
+            });
         }
     }
 }
